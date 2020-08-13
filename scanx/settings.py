@@ -25,7 +25,7 @@ SECRET_KEY = '^m$uuyl7v9_kx^=(5+pcobsk$a4g6i6p-2%-54whi3r_p4%+!='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['myattendanceapp2.herokuapp.com']
 
 
 # Application definition

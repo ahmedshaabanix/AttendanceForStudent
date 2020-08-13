@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+    <!-- qr form -->
+    <form class="text-center border border-light p-5 mt-5" method = 'POST'  action="{% url 'generate_qr'%}">
+        {% csrf_token %} <!-- security purpose-->
+
+        <p class="h4 mb-4">GENERATE QR</p>
+    
+        
+            
+        <select name="subjects" class="mb-3 " id="usersubjects">
+         <option disabled="true" selected>-- select subject --</option>
+            {% for subjects in subjects%}
+                <option value="{{subjects.pk}}">{{subjects.name}}</option>
+            {% endfor%}
+        </select>
+                
+
+
+        <!-- Lecture Number -->
+        <input type="text" name ="lecture_number" class="form-control mb-4" placeholder="Lecture Number">
+
+        <!-- password -->
+        <input type="password" name="password" class="form-control mb-4" placeholder="Enter a word">
+
+        <!-- generate qr button -->
+        <button class="btn btn-info btn-block" type="submit">Generate</button>
+
+
+    </form>
+{%endblock content%}    

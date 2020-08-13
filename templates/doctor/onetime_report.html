@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+
+{%block content%}
+<!-- Attendance Table-->
+<div class="col-md-6 mt-5">
+
+  <div class="card">
+    <div class="card-body">
+    <h4 class="card-title"> Attendance Report
+    <input type="button" id="btnExport" value="Export" onclick="Export()" />
+    <button class="btn btn-dark float-right" id = "save"  style="border-radius: 20px; padding-right: 20PX; padding-left: 20px;">Save</button>
+    <button class="btn btn-warning float-right" id = "load_attendance"  style="border-radius: 20px; margin-right: 10px;padding-right: 20PX; padding-left: 20px;">Load</button> <hr></h4>
+  
+    <table class="table  table-hover table-bordered " style="margin-top:30px; text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Attendance</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+  
+      <tbody id = "myAttendanceTable">
+        <tr>
+          <td scope="row">1</td>
+          <td>احمد شعبان جبر</td>
+          <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>
+          <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+        </tr>
+         <tr>
+          <td scope="row">1</td>
+          <td>احمد شعبان جبر</td>
+          <td><i class="fa fa-times-circle text-danger" aria-hidden="true"></i></i></td>
+          <td class="text-center"><button class="btn btn-success">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
+</div>
+<!-- End Attendance Table -->
+
+<!--Absence Table-->
+<div class="col-md-6 mt-5">
+
+  <div class="card">
+    <div class="card-body">
+    <h4 class="card-title"> Absence Report
+    <button class="btn btn-dark float-right" id = "save"  style="border-radius: 20px; padding-right: 20PX; padding-left: 20px;">Save</button>
+    <button class="btn btn-warning float-right" id = "load_absence"  style="border-radius: 20px; margin-right: 10px;padding-right: 20PX; padding-left: 20px;">Load</button> <hr></h4>
+  
+    <table class="table  table-hover table-bordered " style="margin-top:30px; text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Attendance</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+  
+      <tbody id = "myAbsenceTable">
+        <tr>
+          <td scope="row">1</td>
+          <td>احمد شعبان جبر</td>
+          <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>
+          <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+        </tr>
+         <tr>
+          <td scope="row">1</td>
+          <td>احمد شعبان جبر</td>
+          <td><i class="fa fa-times-circle text-danger" aria-hidden="true"></i></i></td>
+          <td class="text-center"><button class="btn btn-success">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
+</div>
+<!-- End Absence Table -->
+{%endblock content%}
+
+{% block javascript %}
+<script>
+ 
+
+  $(document).ready(function(){
+    // load attendance
+    $("#load_attendance").click(function(){
+   
+    
+      $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:"{%url 'show_attendance'%}",
+        data:{'name':name},
+        success:function(data, Status, jqXHR){
+          
+          console.log(data)
+          data.forEach(function(data){
+            $('#myAttendanceTable tr').remove()
+            $('#myAttendanceTable').append("<tr>"+
+                "<td>"+ data.id +"</td>"+
+                "<td>"+ data.name +"</td>"+
+                "<td>"+"<i class='fa fa-check-circle text-success' aria-hidden='true'>"+"</i>"+"</td>"+
+                "<td class='text-center'>"+
+                  "<button class='btn btn-danger'>"+
+                    "DELETE"+"</button>"+
+                    "</td>"
+              +"<tr>");
+          });
+        }
+
+      });
+     
+    });
+
+    //load Absence
+    $("#load_absence").click(function(){
+   
+    
+      $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:"{%url 'show_absence'%}",
+        data:{'name':name},
+        success:function(data, Status, jqXHR){
+          $('#myAbsenceTable tr').remove();
+          console.log(data)
+          data.forEach(function(data){
+            $('#myAbsenceTable').append("<tr>"+
+                "<td>"+ data.id +"</td>"+
+                "<td>"+ data.name +"</td>"+
+                "<td>"+"<i class='fa fa-times-circle text-danger' aria-hidden='true'>"+"</i>"+"</td>"+
+                "<td class='text-center'>"+
+                  "<button class='btn btn-success'>"+
+                    "ADD"+"</button>"+
+                    "</td>"
+              +"<tr>");
+          });
+        }
+
+   });
+  
+ });
+
+ 
+
+  });
+// render to pdf
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    function Export() {
+        html2canvas(document.getElementById('myAttendanceTable'), {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+              
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500,
+                        
+                        
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("AttendanceTable.pdf");
+            },
+        letterRendering:true
+            
+        });
+    }
+</script>
+
+{% endblock javascript %}

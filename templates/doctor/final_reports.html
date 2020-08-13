@@ -1,0 +1,106 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="col-md-12 mt-5">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="attendance-tab" data-toggle="tab" href="#attendance" role="tab" aria-controls="home" aria-selected="true">Attendance Report</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="absence-tab" data-toggle="tab" href="#absence" role="tab" aria-controls="profile" aria-selected="false">Absence Report</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="messages" aria-selected="false">ALL</a>
+    </li>
+  </ul>
+  
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="attendance" role="tabpanel" aria-labelledby="nav attendance-tab">
+      <table class="table  table-hover table-bordered " style="margin-top:30px; text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Attendance</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+  
+          <tbody id = "mytable3">
+            <tr>
+              <td scope="row">1</td>
+              <td>احمد شعبان جبر</td>
+              <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>
+              <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+              <td scope="row">1</td>
+              <td>احمد شعبان جبر</td>
+              <td><i class="fa fa-times-circle text-danger" aria-hidden="true"></i></i></td>
+              <td class="text-center"><button class="btn btn-success">Add</button></td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="tab-pane" id="absence" role="tabpanel" aria-labelledby="absence-tab">
+          <table class="table  table-hover table-bordered " style="margin-top:30px; text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Attendance</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+  
+          <tbody id = "mytable1">
+            <tr>
+              <td scope="row">1</td>
+              <td>احمد شعبان جبر</td>
+              <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>
+              <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+              <td scope="row">1</td>
+              <td>احمد شعبان جبر</td>
+              <td><i class="fa fa-times-circle text-danger" aria-hidden="true"></i></i></td>
+              <td class="text-center"><button class="btn btn-success">Add</button></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="tab-pane" id="all" role="tabpanel" aria-labelledby="all-tab">
+      <table class="table  table-hover table-bordered " style="margin-top:30px; text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Attendance</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+  
+          <tbody id = "mytable2">
+            <tr>
+              <td scope="row">1</td>
+              <td>احمد شعبان جبر</td>
+              <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>
+              <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+              <td scope="row">1</td>
+              <td>احمد شعبان جبر</td>
+              <td><i class="fa fa-times-circle text-danger" aria-hidden="true"></i></i></td>
+              <td class="text-center"><button class="btn btn-success">Add</button></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  
+  
+</div>
+
+{%endblock content%}
+{% block javascript %}
+
+{% endblock javascript %}

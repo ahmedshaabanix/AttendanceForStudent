@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<!-- Default form login -->
+<form class="text-center border border-light p-5" method= "POST" action="{% url 'login_handler'%}">
+    {% csrf_token %}
+    <p class="h4 mb-4">Log in</p>
+
+    <!-- UserName -->
+    <input type="text" name="username" class="form-control mb-4 " placeholder="Email" required>
+
+    <!-- Password -->
+    <input type="password" name="password" class="form-control mb-4 " placeholder="Password" required>
+
+    <div class="d-flex justify-content-around">
+        
+        <div>
+            <!-- Forgot password -->
+            <a href="{%url 'password_reset'%}">Forgot password?</a>
+        </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Log In</button>
+
+    <!-- Register -->
+    <p>Not a member?
+        <a href="{% url 'register'%}">Register</a>
+    </p>
+
+    <!-- Social login 
+    <p>or sign in with:</p>
+
+    <a href="#" class="mx-2" role="button"><i class="fa fa-facebook light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fa fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fa fa-linkedin light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fa fa-github light-blue-text"></i></a> -->
+
+</form>
+<!-- Default form login -->
+
+
+{% endblock content%}

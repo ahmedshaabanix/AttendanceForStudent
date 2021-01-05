@@ -25,7 +25,7 @@ SECRET_KEY = '^m$uuyl7v9_kx^=(5+pcobsk$a4g6i6p-2%-54whi3r_p4%+!='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['myattendanceapp2.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    
+
+
 ]
 
 
@@ -88,25 +88,26 @@ DATABASES = {
         'NAME': 'attendance_project',
         'HOST': 'localhost',
         'USER': 'root',
-        'password':'',
+        'password': '',
         'port': '',
-    'OPTIONS': {
-     'init_command': 'SET foreign_key_checks = 0;',
-     },
+        'OPTIONS': {
+            'init_command': 'SET foreign_key_checks = 0;',
+        },
     }
-    
+
 }
-AUTH_USER_MODEL = 'accounts.MyUser' # making my custom user model the default user model
+# making my custom user model the default user model
+AUTH_USER_MODEL = 'accounts.MyUser'
 # rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
-        
-    
+
+
 }
 
 # REST_KNOX ={
 #     'USER_SERIALIZERS': 'api.serializers.class UserSerializer',
-    
+
 # }
 
 # Password validation
@@ -144,12 +145,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT =os.path.join(BASE_DIR , 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
-MEDIA_URL ='/images/'
+MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR, 'static')
 ]
 
 LOGIN_REDIRECT_URL = 'home'
